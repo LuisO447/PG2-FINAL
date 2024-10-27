@@ -1,0 +1,13 @@
+{
+    "leccionId": "66e2f81a61de0e1e58190212",
+    "tipo": "Prueba corta espacio y alineación",
+    "puntajeMaximo": 100,
+    "intentosIlimitados": true,
+    "tiempoLimite": 1,
+    "cuestionario": [
+      {
+        "pregunta": "ingrese link de documento",
+        "tipo": "link"
+      }
+    ]
+  }

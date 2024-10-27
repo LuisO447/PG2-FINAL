@@ -1,0 +1,99 @@
+{
+    "leccionId": "66e2f6ac61de0e1e5819020c",
+    "tipo": "Prueba corta puntuación",
+    "puntajeMaximo": 100,
+    "intentosIlimitados": true,
+    "tiempoLimite": 1,
+    "cuestionario": [
+      {
+        "pregunta": "¿Qué función cumple el punto?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separa elementos en una lista", "correcta": false },
+          { "texto": "Separa oraciones completas", "correcta": true },
+          { "texto": "Indica una pausa mayor que la coma", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿Para qué se usa la coma?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separa oraciones completas", "correcta": false },
+          { "texto": "Separa elementos en una lista o ideas secundarias", "correcta": true },
+          { "texto": "Indica una pausa menor que el punto", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿Cómo se usa el punto y coma?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Indica una pausa menor que la coma", "correcta": false },
+          { "texto": "Indica una pausa mayor que la coma pero menor que el punto", "correcta": true },
+          { "texto": "Separa oraciones completas", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "El uso de la coma en la frase 'Fuimos a la tienda, compramos pan y regresamos a casa' es para:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separar oraciones completas", "correcta": false },
+          { "texto": "Separar elementos en una lista", "correcta": true },
+          { "texto": "Indicar una pausa mayor que el punto", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "En la oración 'Me gusta el helado; sin embargo, no lo como mucho', el punto y coma:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separa elementos en una lista", "correcta": false },
+          { "texto": "Indica una pausa menor que la coma", "correcta": false },
+          { "texto": "Indica una pausa mayor que la coma pero menor que el punto", "correcta": true }
+        ]
+      },
+      {
+        "pregunta": "¿Qué tipo de pausa indica el punto?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Pausa menor que la coma", "correcta": false },
+          { "texto": "Pausa mayor que la coma", "correcta": false },
+          { "texto": "Pausa que finaliza una oración completa", "correcta": true }
+        ]
+      },
+      {
+        "pregunta": "La coma en la frase 'Juan, que estaba cansado, se fue a dormir' se usa para:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separar oraciones completas", "correcta": false },
+          { "texto": "Separar elementos en una lista", "correcta": false },
+          { "texto": "Separar ideas secundarias", "correcta": true }
+        ]
+      },
+      {
+        "pregunta": "¿Cuál es la función del punto y coma en la oración 'Llegué temprano; sin embargo, la puerta estaba cerrada'?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separar elementos en una lista", "correcta": false },
+          { "texto": "Separar oraciones relacionadas", "correcta": true },
+          { "texto": "Indicar una pausa menor que la coma", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿En qué casos se utiliza el punto y coma?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Para separar ideas secundarias", "correcta": false },
+          { "texto": "Para separar oraciones relacionadas o complejas", "correcta": true },
+          { "texto": "Para separar palabras", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "En la frase 'Hoy tenemos clase de matemáticas; mañana será de historia', ¿qué función cumple el punto y coma?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Separar oraciones completas", "correcta": false },
+          { "texto": "Separar ideas relacionadas dentro de una oración", "correcta": true },
+          { "texto": "Separar elementos en una lista", "correcta": false }
+        ]
+      }
+    ]
+  }

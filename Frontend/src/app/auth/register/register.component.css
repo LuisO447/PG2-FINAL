@@ -1,0 +1,6 @@
+::ng-deep div.p-scrollpanel{
+ 
+    @media screen and ( min-width: 768px ) {
+        height: 100% !important;
+    }
+}

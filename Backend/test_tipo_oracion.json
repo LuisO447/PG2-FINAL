@@ -1,0 +1,108 @@
+{
+  "leccionId": "66e2f6f961de0e1e5819020e",
+  "tipo": "Prueba corta tipo de oración",
+  "puntajeMaximo": 100,
+  "intentosIlimitados": true,
+  "tiempoLimite": 1,
+  "cuestionario": [
+    {
+      "pregunta": "¿Qué tipo de oración expresa una afirmación o negación?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Interrogativa", "correcta": false },
+        { "texto": "Exclamativa", "correcta": false },
+        { "texto": "Declarativa", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "¿Cuál es el propósito de una oración interrogativa?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Expresar emociones o sorpresa", "correcta": false },
+        { "texto": "Plantear una pregunta", "correcta": true },
+        { "texto": "Hacer una afirmación", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La oración '¡Qué sorpresa verte aquí!' es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Declarativa", "correcta": false },
+        { "texto": "Interrogativa", "correcta": false },
+        { "texto": "Exclamativa", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "La oración '¿Dónde está mi libro?' es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Declarativa", "correcta": false },
+        { "texto": "Interrogativa", "correcta": true },
+        { "texto": "Exclamativa", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "¿Qué tipo de oración se usa para expresar emociones o sorpresa?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Interrogativa", "correcta": false },
+        { "texto": "Exclamativa", "correcta": true },
+        { "texto": "Declarativa", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La oración 'Nos vamos de vacaciones' es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Exclamativa", "correcta": false },
+        { "texto": "Interrogativa", "correcta": false },
+        { "texto": "Declarativa", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "¿Cómo se identifica una oración exclamativa?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Por el uso de signos de interrogación", "correcta": false },
+        { "texto": "Por el uso de signos de admiración", "correcta": true },
+        { "texto": "Por el uso de punto y coma", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La oración '¿Puedes ayudarme con esta tarea?' es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Declarativa", "correcta": false },
+        { "texto": "Interrogativa", "correcta": true },
+        { "texto": "Exclamativa", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La oración '¡Qué bonito es el día!' es un ejemplo de:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Oración declarativa", "correcta": false },
+        { "texto": "Oración interrogativa", "correcta": false },
+        { "texto": "Oración exclamativa", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "La oración 'Hoy es un buen día para aprender' es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Exclamativa", "correcta": false },
+        { "texto": "Interrogativa", "correcta": false },
+        { "texto": "Declarativa", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "¿Qué tipo de oración es '¿Qué hora es?'?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Declarativa", "correcta": false },
+        { "texto": "Interrogativa", "correcta": true },
+        { "texto": "Exclamativa", "correcta": false }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+<div class=" h-full flex flex-col justify-between">
+
+    <!-- Encabezado -->
+        <div class="border-b border-gray-300 pb-2 flex items-center justify-between">
+
+            <h5 class="font-bold text-lg text-center flex-grow">Administración de cursos</h5>
+        
+            <div>
+
+                <span *ngIf="componenteActual == true; else iconList" class="p-inputgroup-addon bg-white " (click)="showOtherComponete( false )">
+                    <i class="pi pi-plus text-blue-500"></i>
+                </span>
+
+                <ng-template #iconList>
+                    <span class="p-inputgroup-addon bg-white " (click)="showOtherComponete( true )">
+                        <i class="pi pi-arrow-left text-blue-500"></i>
+                    </span>
+                </ng-template>
+
+            </div>
+        
+        </div>
+    <!--  -->
+
+    <!-- cuerpo del componente  -->
+
+        <!-- table listado de los cursos -->
+            <div *ngIf=" componenteActual == true; else ComponenteFormularioCurso" >
+
+                <div *ngIf="banderaCargaDatos">
+                    <p-progressSpinner ariaLabel="cargando..." />
+                </div>
+    
+                <div *ngIf="banderaCargaDatos == false " >
+    
+                    <p-table [value]="listaCursos" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5"  sortMode="single">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="nombre"  style="width:20%" class="text-center" > <div class="flex items-center justify-center"> Nombre   <p-sortIcon field="code">    </p-sortIcon> </div> </th>
+                                <th pSortableColumn="seccion" style="width:20%" class="text-center" > <div class="flex items-center justify-center"> Sección  <p-sortIcon field="seccion"> </p-sortIcon> </div> </th>
+                                <th pSortableColumn="escuela" style="width:20%" class="text-center" > <div class="flex items-center justify-center"> Escuela  <p-sortIcon field="escuela"> </p-sortIcon> </div> </th>
+                                <th pSortableColumn="escuela" style="width:20%" class="text-center" > <div class="flex items-center justify-center"> Tipo curso  <p-sortIcon field="escuela"> </p-sortIcon> </div> </th>
+                                <th style="width:20%" class="text-center" > <div class="flex items-center justify-center"> Opciones </div> </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-curso>
+                            <tr>
+                                <td class="text-center">{{ curso.nombre }}</td>
+                                <td class="text-center" >{{ curso.seccion }}</td>
+                                <td class="text-center" >{{ curso.escuela }}</td>
+                                <td class="text-center" >{{ curso.tipoCurso }}</td>
+                                <td class="text-center">
+
+                                    <div class="flex justify-center">
+
+                                    
+                                        <span class="p-inputgroup-addon bg-white p-0 cursor-pointer" (click)="asignarDatos( curso )">
+                                            <i class="pi pi-eye text-blue-500"></i>
+                                        </span>
+
+                                        <span class="p-inputgroup-addon bg-white p-0 cursor-pointer" (click)="asignarDatosEdicion( curso )">
+                                            <i class="pi pi-pencil text-blue-500"></i>
+                                        </span>
+
+                                        <span class="p-inputgroup-addon bg-white p-0 cursor-pointer" (click)="confirmDelete( curso )">
+                                            <i class="pi pi-trash text-red-500"></i>
+                                        </span>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                
+            </div>
+        <!--  -->
+
+        <!-- formulario para registrar curso -->
+            <ng-template #ComponenteFormularioCurso>
+
+                
+                <!-- Formulardio para los datos  -->
+                    <div class="w-full flex flex-col justify-center my-auto" >
+
+                        <form [formGroup]="cursoForm" (ngSubmit)="cursoModify()" class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+                            <!-- nombre del curso    -->
+                                <div class="p-field mb-3">
+                            
+                                    <div class="p-inputgroup">
+
+                                        <span class="p-inputgroup-addon bg-white border ">
+                                            <i class="pi pi-megaphone text-blue-500"></i>
+                                        </span>
+
+                                        <span class="p-float-label">
+                                            <input #nombre pInputText formControlName="nombre" class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                                            <label for="nombre">Nombre</label>
+                                        </span>
+
+                                        <span class="p-inputgroup-addon bg-white ">
+                                            <i class="pi pi-nothing text-blue-500"></i>
+                                        </span>
+                                        
+                                    </div>
+                                
+                                    <div *ngIf="cursoForm.get('nombre')?.invalid && cursoForm.get('nombre')?.touched" class="p-error">
+                                    Por favor, ingresa un nombre del curso.
+                                    </div>
+                    
+                                </div>
+                            <!--  -->
+
+                            <!-- seccion    -->
+                                <div class="p-field mb-3">
+                            
+                                    <div class="p-inputgroup">
+
+                                        <span class="p-inputgroup-addon bg-white border ">
+                                            <i class="pi pi-info text-blue-500"></i>
+                                        </span>
+
+                                        <span class="p-float-label">
+                                            <p-dropdown [options]="secciones" formControlName="seccion" placeholder="Sección" optionLabel="name" optionValue="code" inputId="float-label"></p-dropdown>
+                                            <label for="float-label">Seleciona una sección</label>
+                                        </span>
+
+
+                                        <span class="p-inputgroup-addon bg-white ">
+                                            <i class="pi pi-nothing text-blue-500"></i>
+                                        </span>
+
+                                    </div>
+                                
+                                    <div *ngIf="cursoForm.get('seccion')?.invalid && cursoForm.get('seccion')?.touched" class="p-error">
+                                        Por favor, ingresa un sección.
+                                    </div>
+                    
+                                </div>
+                            <!--  -->
+
+                            <!-- escuela    -->
+                                <div class="p-field mb-3">
+                                
+                                    <div class="p-inputgroup">
+
+                                        <span class="p-inputgroup-addon bg-white border ">
+                                            <i class="pi pi-graduation-cap  text-blue-500"></i>
+                                        </span>
+
+                                        <span class="p-float-label">
+                                            <input  #escuela pInputText formControlName="escuela" class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                                            <label for="escuela">Escuela</label>
+                                        </span>
+
+                                        <span class="p-inputgroup-addon bg-white ">
+                                            <i class="pi pi-nothing text-blue-500"></i>
+                                        </span>
+
+                                    </div>
+                                
+                                    <div *ngIf="cursoForm.get('escuela')?.invalid && cursoForm.get('escuela')?.touched" class="p-error">
+                                        Por favor, ingresa un escuela.
+                                    </div>
+                    
+                                </div>
+                            <!--  -->
+
+
+                            <!-- tipo de curso  ortografia | caligrafia    -->
+                            <div class="p-field mb-3">
+                                
+                                <div class="p-inputgroup">
+
+                                    <span class="p-inputgroup-addon bg-white border ">
+                                        <i class="pi pi-bookmark  text-blue-500"></i>
+                                    </span>
+                                
+                                    <div class="flex justify-evenly w-full items-center " >
+                                        <span>Ortografía</span>
+                                        <p-inputSwitch formControlName="tipoCurso" [falseValue]="'ortografia'" [trueValue]="'caligrafia'" ></p-inputSwitch>
+                                        <span>Caligrafía</span>
+                                    </div>
+
+                                    <span class="p-inputgroup-addon bg-white ">
+                                        <i class="pi pi-nothing text-blue-500"></i>
+                                    </span>
+
+                                </div>
+                            
+                                <div *ngIf="cursoForm.get('tipoCurso')?.invalid && cursoForm.get('tipoCurso')?.touched" class="p-error">
+                                    Por favor, ingresa un tipo curso.
+                                </div>
+                
+                            </div>
+                        <!--  -->
+
+                        </form>
+
+                         <!-- Sección de bloqueo/desbloqueo estudiantes -->
+                            <div class="p-field mb-3 mt-8 w-full max-w-md mx-auto"> <!-- Alinea el contenedor al centro -->
+                                <!-- Input para bloquear estudiante -->
+                                <div *ngIf="codigoCurso">
+                                    <h5 class="text-lg font-bold">Bloquear estudiante en el curso {{ datosMostrar.nombre }}</h5>
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                        <i class="pi pi-user"></i>
+                                        </span>
+                                        <input type="text" pInputText [(ngModel)]="correoEstudiante" placeholder="Correo del estudiante">
+                                        <button pButton label="Bloquear" icon="pi pi-lock" (click)="validarYBloquearEstudiante()" class="ml-2"></button>
+                                    </div>
+                                    <!-- Mensaje de error si no hay correo -->
+                                    <div *ngIf="!correoEstudiante && showValidationError" class="p-error mt-2">
+                                        Por favor, ingresa un correo válido.
+                                    </div>
+                                </div>
+                            
+                              <!-- Listado de estudiantes bloqueados -->
+                                <div class="mt-4" *ngIf="bloqueados && bloqueados.length > 0">
+                                    <h5 class="text-lg font-bold">Estudiantes bloqueados</h5>
+                                    <!-- Cuadro con barra de desplazamiento -->
+                                    <div class="bloqueados-container">
+                                    <ul>
+                                        <li *ngFor="let estudiante of bloqueados" class="flex justify-between items-center">
+                                        <span>{{ estudiante.nombre_completo }} ({{ estudiante.correo }})</span>
+                                        <button pButton label="Desbloquear" icon="pi pi-unlock" class="p-button-danger" (click)="desbloquearEstudiante(estudiante.correo)"></button>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                <!--  -->
+
+
+                <div class="flex flex-col items-center justify-center ">
+                    <div class="grid gap-4 mt-4 w-full sm:flex sm:justify-between">
+                        <button (click)="showOtherComponete( true )" class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                            Cancelar
+                        </button>
+                        <button (click)="cursoModify()" [disabled]="isButtonDisabled" class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                            {{ editarCurso == true ? 'Actualizar': 'Registrar' }} <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+                        </button>
+                    </div>
+                </div>
+            
+
+            </ng-template>
+        <!--  -->
+
+        
+    <!--  -->
+
+    <!-- Footer boones  -->
+        <div class="flex flex-col items-center justify-center ">
+        </div>
+    <!--  -->
+
+</div>
+
+
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">código del curso</span>
+    </ng-template>
+
+    <ng-template pTemplate="body">
+        <h1>
+            el curso {{ datosMostrar.nombre }} para el escuela {{ datosMostrar.escuela }} en la sección {{ datosMostrar. seccion }} es el código:
+        </h1> 
+        <h1 class="text-lg font-bold size-5/6 w-full text-center" >
+            {{ datosMostrar.codigoCurso }}
+        </h1>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="showDialog( false )" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

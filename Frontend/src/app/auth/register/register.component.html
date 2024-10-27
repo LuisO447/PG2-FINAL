@@ -1,0 +1,205 @@
+
+<div class="h-full flex flex-col-reverse sm:flex-col-reverse md:flex-row ">
+    
+
+  <div class="w-full sm:w-full md:w-1/2 bg-gradient-to-r bg-blue-700">
+      <div class="flex flex-col items-center justify-center h-full">
+      <h1 class="text-3xl text-white font-bold">Opciones</h1>
+      <p class="text-gray-300">¿Necesitas ayuda?</p>
+      <div class="grid gap-4 mt-4">
+          <a (click)="changeCard(0)" class="cursor-pointer text-md bg-white-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">iniciar sesión</a>
+          <a (click)="changeCard(1)" class="cursor-pointer text-md bg-white-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Recuperar cuenta</a>
+      </div>
+      </div>
+  </div>
+  <!-- Mitad inferior con el formulario -->
+  <div class="flex-1 flex flex-col justify-center items-center p-6 bg-white">
+
+    <h2 class="text-2xl font-bold mb-4">Registrarse {{tipoIngreso}}</h2>
+
+    <div [ngSwitch]="pasosIngreso" class="w-full h-full flex flex-col justify-around items-center">
+
+      <!-- Primer paso para login -->
+      <span *ngSwitchCase="1" class="w-full"> 
+        
+        <div>
+          <div class="flex flex-col items-center justify-center h-full">
+            <div class="grid gap-4 mt-4 w-full">
+                <button (click)="ingresoPorTipo('profesor')" class="cursor-pointer text-md bg-white-500 text-white bg-blue-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Profesor</button>
+                <button (click)="ingresoPorTipo('estudiante')" class="cursor-pointer text-md bg-white-500 text-white bg-blue-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Estudiante</button>
+            </div>
+          </div>
+        </div>
+      
+      </span>
+
+      <!-- Segundo paso para loing  -->
+          <span *ngSwitchCase="2" class="h-full">
+            
+
+            <p-scrollPanel [style]="{ width: '100%', height: '250px'  }">
+              <form [formGroup]="registerForm" (ngSubmit)="register()" class="w-full max-w-sm h-full flex flex-col justify-around items-center ">
+
+                
+                <!-- correo electronico -->
+                  <div class="p-field mb-3">
+          
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-envelope text-blue-500"></i>
+                      </span>
+
+                      <span class="p-float-label">
+                        <input #correo pInputText formControlName="correo" class=" pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                        <label for="correo">Correo electrónico</label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white ">
+                        <i class="pi pi-nothing text-blue-500"></i>
+                      </span>
+
+                    </div>
+                  
+                    <div *ngIf="registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched" class="p-error">
+                      Por favor, ingresa un correo electrónico válido.
+                    </div>
+      
+                  </div>
+                <!--  -->
+
+                <!-- nombre completo -->
+                  <div class="p-field mb-3">
+            
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-user text-blue-500"></i>
+                      </span>
+
+                      <span class="p-float-label">
+                        <input #nombre_completo pInputText formControlName="nombre_completo"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                        <label for="nombre_completo">Nombre completo</label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white ">
+                        <i class="pi pi-nothing text-blue-500"></i>
+                      </span>
+
+                    </div>
+                  
+                    <div *ngIf="registerForm.get('nombre_completo')?.invalid && registerForm.get('nombre_completo')?.touched" class="p-error">
+                      Por favor, ingresa un nombre.
+                    </div>
+      
+                  </div>
+                <!--  -->
+
+                <!-- edad -->
+                  <div class="p-field mb-3">
+              
+                    <div class="p-inputgroup">
+                      
+                      <span class="p-inputgroup-addon bg-white border border-blue-500 focus-within:border-blue-700">
+                        <img src="assets/icons/celebration.svg" alt="User Icon" class="w-5 h-5">
+                      </span>
+                      
+                      <span class="p-float-label">
+                        <p-inputNumber #edad class="pl-[10px]" formControlName="edad" inputId="minmax" mode="decimal" [min]="10" [max]="100"> </p-inputNumber>
+                        <label for="edad"></label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white ">
+                        <i class="pi pi-nothing text-blue-500"></i>
+                      </span>
+
+                    </div>
+                  
+                    <div *ngIf="registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched" class="p-error">
+                      Por favor, ingresa una edad.
+                    </div>
+      
+                  </div>
+                <!--  -->
+
+                <!-- sexo  -->
+                  <div class="p-field mb-3 w-full">
+              
+                    <div class="p-inputgroup items-center">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-mars text-blue-500"></i>
+                      </span>
+
+                      <div class="flex justify-evenly w-5/6" >
+                        <span>Masculino</span>
+                        <p-inputSwitch formControlName="sexo" [falseValue]="'m'" [trueValue]="'f'" ></p-inputSwitch>
+                        <span>Femenino</span>
+                      </div>
+                    
+                    </div>
+                  
+                    <div *ngIf="registerForm.get('sexo')?.invalid && registerForm.get('sexo')?.touched" class="p-error">
+                      Por favor, ingresa un genero.
+                    </div>
+      
+                  </div>
+                <!--  -->
+
+                <!-- contrasena -->
+                  <div class="p-field mb-3">
+              
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-lock text-blue-500"></i>
+                      </span>
+
+                      <span class="p-float-label">
+                        <input #contrasena [type]=" visiblePassword ? 'text' : 'password' " pInputText formControlName="contrasena" class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0" />
+                        <label for="contrasena">Contraseña</label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white border" (click)="cambioVistaInput()" >
+                        <i class="pi text-blue-500" [class]=" visiblePassword ? 'pi-eye' : 'pi-eye-slash' " ></i>
+                      </span>
+
+                    </div>
+                  
+                    <div *ngIf="registerForm.get('contrasena')?.invalid && registerForm.get('contrasena')?.touched" class="p-error">
+                      Por favor, ingresa un contraseña.
+                    </div>
+      
+                  </div>
+                <!--  -->
+
+                <!--  -->
+                  <div class="flex items-center justify-between w-full">
+                    <button (click)="register()" [disabled]="isButtonDisabled" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                      Registrarse <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+                    </button>
+                  </div>
+                <!--  -->
+
+                <!--  -->
+                  <div class="p-d-flex p-jc-between w-full">
+                    <button (click)="ingresoPorTipo('')" class="w-full cursor-pointer mt-5 text-md bg-white-500 text-white bg-blue-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Cancelar</button>
+                  </div>
+                <!--  -->
+
+              </form>
+            </p-scrollPanel>
+      
+
+            <!-- regresar al paso 1 -->
+
+
+          </span>
+      <!-- ------------------------------ -->
+
+        <span *ngSwitchDefault></span>
+
+  
+  </div>
+
+</div>

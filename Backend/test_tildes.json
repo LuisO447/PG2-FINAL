@@ -1,0 +1,99 @@
+{
+    "leccionId": "66e2f5ff61de0e1e5819020a",
+    "tipo": "Prueba corta tildes",
+    "puntajeMaximo": 100,
+    "intentosIlimitados": true,
+    "tiempoLimite": 1,
+    "cuestionario": [
+      {
+        "pregunta": "¿Cuál es la regla para tildar una palabra aguda?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Lleva tilde si termina en vocal, 'n' o 's'", "correcta": true },
+          { "texto": "Lleva tilde si no termina en vocal, 'n' o 's'", "correcta": false },
+          { "texto": "Siempre lleva tilde en la antepenúltima sílaba", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿Cómo se tilda una palabra grave?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Lleva tilde si termina en vocal, 'n' o 's'", "correcta": false },
+          { "texto": "Lleva tilde si no termina en vocal, 'n' o 's'", "correcta": true },
+          { "texto": "Siempre lleva tilde en la antepenúltima sílaba", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿Qué tipo de palabras siempre llevan tilde?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Palabras agudas", "correcta": false },
+          { "texto": "Palabras graves", "correcta": false },
+          { "texto": "Palabras esdrújulas", "correcta": true }
+        ]
+      },
+      {
+        "pregunta": "La palabra 'camión' es:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Aguda", "correcta": true },
+          { "texto": "Grave", "correcta": false },
+          { "texto": "Esdrújula", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿La palabra 'televisión' es:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Aguda", "correcta": false },
+          { "texto": "Grave", "correcta": false },
+          { "texto": "Esdrújula", "correcta": true }
+        ]
+      },
+      {
+        "pregunta": "La palabra 'feliz' es:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Aguda", "correcta": false },
+          { "texto": "Grave", "correcta": true },
+          { "texto": "Esdrújula", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "La palabra 'árbol' es:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Aguda", "correcta": false },
+          { "texto": "Grave", "correcta": true },
+          { "texto": "Esdrújula", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿Cómo se tilda una palabra esdrújula?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Si termina en vocal, 'n' o 's'", "correcta": false },
+          { "texto": "Si no termina en vocal, 'n' o 's'", "correcta": false },
+          { "texto": "Siempre en la antepenúltima sílaba", "correcta": true }
+        ]
+      },
+      {
+        "pregunta": "La palabra 'camión' se tilda porque:",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Es una palabra grave que no termina en vocal, 'n' o 's'", "correcta": false },
+          { "texto": "Es una palabra aguda que termina en 'n'", "correcta": true },
+          { "texto": "Es una palabra esdrújula", "correcta": false }
+        ]
+      },
+      {
+        "pregunta": "¿La palabra 'solución' es aguda, grave o esdrújula?",
+        "tipo": "botones",
+        "opciones": [
+          { "texto": "Aguda", "correcta": false },
+          { "texto": "Grave", "correcta": false },
+          { "texto": "Esdrújula", "correcta": true }
+        ]
+      }
+    ]
+  }

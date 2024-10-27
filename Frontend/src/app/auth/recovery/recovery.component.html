@@ -1,0 +1,83 @@
+
+<div class="h-full flex flex-col-reverse sm:flex-col-reverse md:flex-row ">
+    
+
+    <div class="w-full sm:w-full md:w-1/2 bg-gradient-to-r bg-blue-700">
+        <div class="flex flex-col items-center justify-center h-full">
+        <h1 class="text-3xl text-white font-bold">Opciones</h1>
+        <p class="text-gray-300">¿Necesitas ayuda?</p>
+        <div class="grid gap-4 mt-4">
+            <a (click)="changeCard(0)" class="cursor-pointer text-md bg-white-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">iniciar sesión</a>
+            <a (click)="changeCard(2)" class="cursor-pointer text-md bg-white-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Registrarse</a>
+        </div>
+        </div>
+    </div>
+
+    <!-- Mitad inferior con el formulario -->
+    <div class="flex-1 flex flex-col justify-center items-center p-6 bg-white">
+
+      <h2 class="text-2xl font-bold mb-4">Recuperar cuenta</h2>
+
+      <form class="w-full max-w-sm h-96 flex flex-col justify-around items-center " [formGroup]="recoveryForm" (ngSubmit)="recovery()" >
+
+          <!-- tipo profesor estudiante  -->
+            <div class="p-field mb-3 w-full">
+        
+              <div class="p-inputgroup items-center">
+
+                <span class="p-inputgroup-addon bg-white border ">
+                  <i class="pi pi-user text-blue-500"></i>
+                </span>
+  
+                <div class="flex justify-evenly w-5/6" >
+                  <span>Profesor</span>
+                  <p-inputSwitch formControlName="tipo_usuario" [trueValue]="'estudiante'" [falseValue]="'profesor'" ></p-inputSwitch>
+                  <span>Estudiante</span>
+                </div>
+              
+              </div>
+  
+            </div>
+          <!--  -->
+      
+          <!-- correo electronico -->
+            <div class="p-field mb-3">
+          
+              <div class="p-inputgroup">
+
+                <span class="p-inputgroup-addon bg-white border ">
+                  <i class="pi pi-envelope text-blue-500"></i>
+                </span>
+                
+                <span class="p-float-label">
+                  <input #correo pInputText formControlName="correo" class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                  <label for="correo">Correo electrónico</label>
+                </span>
+                
+
+                <span class="p-inputgroup-addon bg-white ">
+                  <i class="pi pi-dddeye text-blue-500"></i>
+                </span>
+
+              </div>
+            
+              <div *ngIf="recoveryForm.get('correo')?.invalid && recoveryForm.get('correo')?.touched" class="p-error">
+                Por favor, ingresa un correo electrónico válido.
+              </div>
+
+            </div>
+          <!--  -->
+
+          <!-- BOTON recuperar  -->
+            <div class="flex items-center justify-between">
+              <button (click)="recovery()" [disabled]="isButtonDisabled" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Recuperar cuenta <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+              </button>
+            </div>
+          <!--  -->
+
+      </form>
+
+    </div>
+
+</div>

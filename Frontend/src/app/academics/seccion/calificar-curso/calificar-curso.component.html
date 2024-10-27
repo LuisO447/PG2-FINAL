@@ -1,0 +1,82 @@
+<div class="" >
+
+    <div>
+        <p> {{ test.mini_tema }} </p>
+    </div>
+
+    <div *ngIf="test.evaluacionGanada == true">
+        <div class="card">
+            <p-messages severity="success">
+                <ng-template pTemplate>
+                    <div class="ml-2">Haz superado esta prueba con éxito.</div>
+                </ng-template>
+            </p-messages>
+        </div>
+    </div>
+
+
+    <p-virtualScroller [value]="test.cuestionario" class="border-1 surface-border border-round" [style]="{'width': '100%'}" scrollHeight="350px" [itemSize]="200">
+
+        <ng-template pTemplate="pregutna" let-pregunta >
+
+            <div class="flex align-items-center p-2 " [ngClass]="{ 'surface-hover': pregunta.index % 2 === 0 }">
+
+                <div *ngIf="pregunta.tipo == 'botones'; else EspacioEscribir">
+                    
+                    <p class="text-lg font-semibold">{{ pregunta.pregunta }}</p>
+            
+                
+                    <div class="flex flex-wrap gap-2 mt-2 items-center">
+                
+                        <div *ngFor="let opcion of pregunta.opciones">
+                            <button (click)="responderPregunta(pregunta, opcion)" type="button" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                                {{ opcion.texto }}
+                            </button>
+                        </div>
+                
+                    </div>
+            
+                </div>
+                
+                
+            </div>
+
+            <ng-template #EspacioEscribir>
+
+                <div *ngIf="pregunta.tipo == 'link' ; else EspacioDefault" >
+                    
+                    <h3>Dibuja en el área con el dedo o lápiz inteligente</h3>
+
+                    <!-- Canvas donde se dibujará -->
+                    <canvas #signatureCanvas class="signature-pad" width="600" height="300"></canvas>
+
+                    <!-- Botones para limpiar o guardar el dibujo -->
+                    <button (click)="clearSignature()">Limpiar</button>
+                    <button (click)="saveSignature()">Guardar</button>
+
+                    <!-- Mostrar imagen guardada -->
+                    <div *ngIf="signatureImage">
+                        <h4>Imagen Guardada:</h4>
+                        <img [src]="signatureImage" alt="Dibujo guardado" />
+                    </div>
+
+                </div>
+
+            </ng-template>
+
+            <ng-template #EspacioDefault ></ng-template>
+
+        </ng-template>
+
+    </p-virtualScroller>
+
+    
+    <div class="flex flex-wrap mt-2 justify-end items-end">
+                
+            <button (click)="enviaExamen()" [disabled]="isButtonDisabled" type="button" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                Enviar <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+            </button>
+
+    </div>
+      
+</div>

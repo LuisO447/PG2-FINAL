@@ -1,0 +1,13 @@
+{
+    "leccionId": "66e2f7a761de0e1e5819020f",
+    "tipo": "Prueba corta básico",
+    "puntajeMaximo": 100,
+    "intentosIlimitados": true,
+    "tiempoLimite": 1,
+    "cuestionario": [
+      {
+        "pregunta": "ingrese link de documento",
+        "tipo": "link"
+      }
+    ]
+  }

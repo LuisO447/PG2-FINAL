@@ -1,0 +1,69 @@
+<div class=" h-full flex flex-col ">
+
+    <!-- Encabezado -->
+    <div class="border-b border-gray-300 pb-2" >
+        <h5 class="text-center font-bold text-lg" >Profesor listado estudiantes</h5>
+    </div>
+    <!--  -->
+
+    <!-- Formulardio para los dato  -->
+        <div class="mt-8">
+
+            <div class="flex justify-end mb-4">
+                <input type="text" pInputText [(ngModel)]="filtroEstudiante" placeholder="Buscar por estudiante" class="p-inputtext p-component p-filled mr-2 border border-blue-500 p-1">
+                <input type="text" pInputText [(ngModel)]="filtroCurso" placeholder="Buscar por curso" class="p-inputtext p-component p-filled border border-blue-500 p-1">
+                <button pButton label="Buscar" icon="pi pi-search" (click)="filtrar()" class="ml-2"></button>
+            </div>
+
+            <div *ngIf="banderaCargaDatos">
+                <p-progressSpinner ariaLabel="cargando..." />
+            </div>
+
+            <div *ngIf="banderaCargaDatos == false " >
+
+                <p-table [value]="listaEstudiantesCursos" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5"  sortMode="single">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="estudiante" style="width:16%" class="text-center" > <div class="flex items-center justify-center"> Estudiante    <p-sortIcon field="estudiante"> </p-sortIcon> </div> </th>
+                            <th pSortableColumn="nombre"     style="width:16%" class="text-center" > <div class="flex items-center justify-center"> Nombre Curso  <p-sortIcon field="nombre">     </p-sortIcon> </div> </th>
+                            <th pSortableColumn="seccion"    style="width:16%" class="text-center" > <div class="flex items-center justify-center"> Sección       <p-sortIcon field="seccion">    </p-sortIcon> </div> </th>
+                            <th pSortableColumn="colegio"    style="width:16%" class="text-center" > <div class="flex items-center justify-center"> Escuela       <p-sortIcon field="colegio">    </p-sortIcon> </div> </th>
+                            <th pSortableColumn="colegio"    style="width:16%" class="text-center" > <div class="flex items-center justify-center"> Tipo curso       <p-sortIcon field="colegio">    </p-sortIcon> </div> </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-estudiantes>
+                        <tr class="cursor-pointer" (contextmenu)="onContextMenu($event, estudiantes)" >
+                            <td class="text-center">{{ estudiantes.estudiante.nombre_completo }}</td>
+                            <td class="text-center">{{ estudiantes.curso.nombre ?? '' }}</td>
+                            <td class="text-center" >{{ estudiantes.curso.seccion }}</td>
+                            <td class="text-center" >{{ estudiantes.curso.escuela }}</td>
+                            <td class="text-center" >{{ estudiantes.curso.tipoCurso }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+
+
+        </div>
+    <!--  -->
+
+    <!-- Footer boones  -->
+        <div class="flex flex-col items-center justify-center "> 
+            <!-- 
+                <div class="grid gap-4 mt-4 w-full sm:flex sm:justify-between">
+            <button class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                Cancelar
+            </button>
+            <button class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                Guardar
+            </button>
+            </div> -->
+        </div> 
+    <!--  -->
+
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+<p-contextMenu #cm [model]="items" (onHide)="onHide()" />

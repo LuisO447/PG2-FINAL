@@ -1,0 +1,23 @@
+ <div class="flex items-center justify-center h-screen  bg-cover bg-center bg-no-repeat bg-gradient-to-br from-blue-500 to-blue-600 ">
+
+    <div class="bg-white shadow-md rounded-lg w-5/6 sm:w-5/6 lg:w-5/6  h-full sm:h-full md:h-5/6  overflow-hidden">
+      <div class="perspective-1000 w-100 h-full">
+        <div class="relative w-full h-full transition-transform duration-700"  [class.transform-style]="true"  [ngClass]="{  'rotate-y-0': currentSide === 0, 'rotate-y-240': currentSide === 1, 'rotate-y-120': currentSide === 2 } " >
+
+          <div class="absolute inset-0 backface-hidden w-full">
+            <app-login (eventoCambioCard)="actualizarCard($event)"></app-login>
+          </div>
+
+          <div class="absolute inset-0 backface-hidden rotate-y-240">
+            <app-register (eventoCambioCard)="actualizarCard($event)"></app-register>
+          </div>
+
+          <div class="absolute inset-0 backface-hidden rotate-y-120">
+            <app-recovery (eventoCambioCard)="actualizarCard($event)"></app-recovery>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div> 

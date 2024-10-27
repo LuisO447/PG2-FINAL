@@ -1,0 +1,13 @@
+.p-card {
+    border-radius: 8px;
+  }
+  
+  .p-error {
+    color: #f44336;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  .p-button {
+    width: 100%;
+  }

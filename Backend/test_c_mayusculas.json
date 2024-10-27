@@ -1,0 +1,13 @@
+{
+    "leccionId": "66e2f7fe61de0e1e58190211",
+    "tipo": "Prueba corta mayúsculas",
+    "puntajeMaximo": 100,
+    "intentosIlimitados": true,
+    "tiempoLimite": 1,
+    "cuestionario": [
+      {
+        "pregunta": "ingrese link de documento",
+        "tipo": "link"
+      }
+    ]
+  }

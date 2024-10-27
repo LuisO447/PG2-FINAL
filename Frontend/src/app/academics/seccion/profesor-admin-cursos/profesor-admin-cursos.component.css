@@ -1,0 +1,11 @@
+::ng-deep div.p-dropdown{
+    width: 100%;
+}
+
+.bloqueados-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }

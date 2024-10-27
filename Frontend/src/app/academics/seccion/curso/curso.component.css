@@ -1,0 +1,49 @@
+::ng-deep p-tabView > div > div > div > ul > li.p-highlight{
+    color: #2563eb;
+    border-bottom: 3px solid #2563eb;
+}
+
+
+/* Encabezado */
+.encabezado {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.encabezado p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Acordeón */
+.accordion-btn {
+    background-color: #3490dc;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+.accordion-content {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.accordion-content iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 0.5rem;
+}

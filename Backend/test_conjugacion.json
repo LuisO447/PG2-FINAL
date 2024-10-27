@@ -1,0 +1,99 @@
+{
+  "leccionId": "66e2f7a761de0e1e5819020f",
+  "tipo": "Prueba corta conjugación de verbos",
+  "puntajeMaximo": 100,
+  "intentosIlimitados": true,
+  "tiempoLimite": 1,
+  "cuestionario": [
+    {
+      "pregunta": "¿Cómo se usa el tiempo presente en la conjugación de verbos?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Para una acción que ocurrió en el pasado", "correcta": false },
+        { "texto": "Para una acción que sucede en el momento actual", "correcta": true },
+        { "texto": "Para una acción que sucederá en el futuro", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La conjugación del verbo 'comer' en primera persona singular del presente es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Como", "correcta": true },
+        { "texto": "Comía", "correcta": false },
+        { "texto": "Comeré", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "¿Qué tiempo verbal se usa para describir una acción futura?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Presente", "correcta": false },
+        { "texto": "Pretérito", "correcta": false },
+        { "texto": "Futuro", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "La conjugación del verbo 'vivir' en tercera persona del singular del pretérito es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Vivió", "correcta": true },
+        { "texto": "Vive", "correcta": false },
+        { "texto": "Vivirá", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "¿Qué tiempo verbal se usa para describir una acción que ocurrió en el pasado?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Presente", "correcta": false },
+        { "texto": "Pretérito", "correcta": true },
+        { "texto": "Futuro", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La conjugación del verbo 'escribir' en primera persona del singular del futuro es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Escribiré", "correcta": true },
+        { "texto": "Escribí", "correcta": false },
+        { "texto": "Escribo", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "¿Cómo se usa el tiempo pretérito en la conjugación de verbos?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Para una acción que sucede en el momento actual", "correcta": false },
+        { "texto": "Para una acción que ocurrió en el pasado", "correcta": true },
+        { "texto": "Para una acción que sucederá en el futuro", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "La conjugación del verbo 'andar' en segunda persona del singular del presente es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Andas", "correcta": true },
+        { "texto": "Anduvo", "correcta": false },
+        { "texto": "Andarás", "correcta": false }
+      ]
+    },
+    {
+      "pregunta": "¿Qué tiempo verbal se utiliza para acciones que están por suceder?",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Presente", "correcta": false },
+        { "texto": "Pretérito", "correcta": false },
+        { "texto": "Futuro", "correcta": true }
+      ]
+    },
+    {
+      "pregunta": "La conjugación del verbo 'pensar' en tercera persona del plural del presente es:",
+      "tipo": "botones",
+      "opciones": [
+        { "texto": "Pensaron", "correcta": false },
+        { "texto": "Piensan", "correcta": true },
+        { "texto": "Pensarán", "correcta": false }
+      ]
+    }
+  ]
+}

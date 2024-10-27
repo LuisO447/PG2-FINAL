@@ -1,0 +1,125 @@
+
+<div class="border-b-2 border-blue-500 p-3 h-[10%]">
+    <p class="font-bold" > {{ datosCurso.nombre }} -- {{ datosCurso.codigoCurso }} </p>
+    <p class="" > {{ datosCurso.descripcion_curso ?? '' }} </p>
+</div>
+
+<div class="h-full hidden lg:block " *ngIf="cargandoContenido == false" >
+
+    
+
+    <div class="w-full h-[90%] flex flex-row">
+
+        <!-- menu lateral -->
+            <div class="h-full w-1/4 p-3 border-r-2 border-blue-500" >
+                <p-menu  [model]="MenuLeeciones"></p-menu>
+            </div>
+        <!--  -->
+
+        <!-- contendio de las lecciones  -->
+
+            <div class="w-full h-full ">
+
+                <div class="border-b-2 border-blue-500 p-3">
+                    <p class="font-bold" > {{ datosLeccion.nombre_leccion }} </p>
+                    <p class="" > {{ datosLeccion.descripcion_leccion }} </p>
+                </div>
+            
+
+                <p-tabView class="h-full" [scrollable]="true" (onChange)="ValidarEvento( $event )">
+
+                    <p-tabPanel *ngFor="let mini_leccion of datosLeccion.mini_lecciones" header="{{ mini_leccion.mini_tema }}" >
+
+                        <div *ngIf=" mini_leccion.tipo == 'texto' ; else ContenidoImagen " class="flex justify-center items-center" >
+                            <p> {{ mini_leccion.contenido }} </p>
+                        </div>
+
+                        <ng-template #ContenidoImagen class="h-full"  >
+                            <div *ngIf=" mini_leccion.tipo == 'imagen' ; else ContenidoVideo " class="flex justify-center items-center" >
+                                <img [src]=" mini_leccion.contenido " alt=""  width="400" height="500" srcset="" >
+                            </div>
+                        </ng-template>
+
+                        <ng-template #ContenidoVideo class="h-full" >
+                            <div *ngIf=" mini_leccion.tipo == 'video' ; else ContenidoQuiz " class="h-full" >
+                                <iframe [src]="urlSafe" height="300px" width="100%" title="Audivisual del tema"></iframe>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #ContenidoQuiz class="h-full" >
+                            <div *ngIf=" mini_leccion.tipo == 'quiz' ; else ContenidoDefault " class="h-full" >
+                                <app-calificar-curso [test]="mini_leccion" [curso]="datosCurso" (ActualizarLeccionContenido)="ActualizarLecciones()"></app-calificar-curso>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #ContenidoDefault class="h-full flex justify-center items-center" >
+                            <p>Sin contenido disponible</p>
+                        </ng-template>
+
+                
+                    </p-tabPanel>
+                
+                
+                </p-tabView>
+                
+            </div>
+
+        <!--  -->
+
+    </div>
+
+
+</div>
+
+
+<div class="h-[90%] block lg:hidden ">
+
+    <div class="w-full h-[90%]  overflow-y-auto">
+            
+            <p-accordion class="w-full" >
+                
+                <p-accordionTab *ngFor="let leccion of datosCurso.lecciones_contenido" [header]="leccion.titulo" [selected]="false" [disabled]="leccion.deshabilitado" (click)="asignarLeccion( leccion )" >
+                
+                    <div class="space-y-4">
+                        <div *ngFor="let mini_leccion of datosLeccion.mini_lecciones">
+                            
+                            <button class="w-full text-left bg-blue-500 text-white py-2 px-4 rounded-md" (click)="toggleContenido(mini_leccion)">
+                                {{ mini_leccion.mini_tema }}
+                            </button>
+                
+                            <div *ngIf="mini_leccion.activo" class="bg-white rounded-md shadow p-4 mt-2">
+                                
+
+                                <div *ngIf="mini_leccion.tipo == 'texto'" class="text-sm text-gray-700">
+                                    {{ mini_leccion.contenido }}
+                                </div>
+                
+                                <div *ngIf="mini_leccion.tipo == 'imagen'" class="flex justify-center">
+                                    <img [src]="mini_leccion.contenido" alt="Imagen de la lección" class="w-full max-w-xs object-contain">
+                                </div>
+                
+                
+                                <div *ngIf="mini_leccion.tipo == 'video'">
+                                    <iframe [src]="urlSafe" class="w-full h-40 sm:h-56 rounded-md" title="Video de la lección"></iframe>
+                                </div>
+                
+                
+                                <div *ngIf="mini_leccion.tipo == 'quiz'">
+                                    <app-calificar-curso [test]="mini_leccion" [curso]="datosCurso" (ActualizarLeccionContenido)="ActualizarLecciones()"></app-calificar-curso>
+                                </div>
+                
+                
+                                <div *ngIf="mini_leccion.tipo == ''" class="text-gray-500 text-center">
+                                    <p>Sin contenido disponible</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </p-accordionTab>
+                
+            </p-accordion>
+
+    </div>
+
+</div>

@@ -1,0 +1,24 @@
+
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.transform-style {
+    transform-style: preserve-3d;
+}
+
+.rotate-y-0 {
+    transform: rotateY(0deg);
+}
+
+.rotate-y-120 {
+    transform: rotateY(120deg);
+}
+
+.rotate-y-240 {
+    transform: rotateY(240deg);
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+}

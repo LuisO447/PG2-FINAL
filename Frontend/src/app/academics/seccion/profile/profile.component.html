@@ -1,0 +1,238 @@
+<div class=" h-full flex flex-col justify-between">
+
+    <!-- Encabezado -->
+
+      <div class="border-b border-gray-300 pb-2 flex items-center justify-between">
+
+        <div>
+
+          <span class="p-inputgroup-addon bg-white " (click)="cambioComonente('dashboard')">
+              <i class="pi pi-arrow-left text-blue-500"></i>
+          </span>
+
+      </div>
+
+        <h5 class="font-bold text-lg text-center flex-grow">Datos del usuario</h5>
+    
+      </div>
+
+    <!--  -->
+
+    <!-- Formulardio para los dato  -->
+        <div class="w-full h-1/2 flex flex-col justify-evenly border-b-[1px] border-blue-500" >
+
+            <h5 class="font-medium text-md text-left ">Acutaliza los datos del usuario</h5>
+
+            <form [formGroup]="profileForm" (ngSubmit)="profileUpdate()" class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              
+                <!-- correo electronico -->
+                  <div class="p-field mb-3">
+          
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-envelope text-blue-500"></i>
+                      </span>
+
+                      <span class="p-float-label">
+                        <input #correo  pInputText  placeholder="Correo electrónico" readonly="readonly"  formControlName="correo"  class=" pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                        <label for="correo"></label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white ">
+                        <i class="pi pi-nothing text-blue-500"></i>
+                      </span>
+
+                    </div>
+      
+                  </div>
+                <!--  -->
+  
+                <!-- nombre completo -->
+                  <div class="p-field mb-3">
+            
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-user text-blue-500"></i>
+                      </span>
+
+                      <span class="p-float-label">
+                        <input #nombre_completo pInputText  formControlName="nombre_completo"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                        <label for="nombre_completo">Nombre completo</label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white ">
+                        <i class="pi pi-nothing text-blue-500"></i>
+                      </span>
+                    </div>
+                  
+                    <div *ngIf="profileForm.get('nombre_completo')?.invalid && profileForm.get('nombre_completo')?.touched" class="p-error">
+                      Por favor, ingresa un nombre.
+                    </div>
+      
+                  </div>
+                <!--  -->
+  
+                <!-- edad -->
+                  <div class="p-field mb-3">
+              
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border border-blue-500 focus-within:border-blue-700">
+                        <img src="assets/icons/celebration.svg" alt="User Icon" class="w-5 h-5">
+                      </span>
+
+                      <span class="p-float-label">
+                        <p-inputNumber #edad class="pl-[10px]" formControlName="edad" inputId="minmax" mode="decimal" [min]="10" [max]="100"> </p-inputNumber>
+                        <label for="edad"></label>
+                      </span>
+
+                      <span class="p-inputgroup-addon bg-white ">
+                        <i class="pi pi-nothing text-blue-500"></i>
+                      </span>
+
+                    </div>
+                  
+                    <div *ngIf="profileForm.get('edad')?.invalid && profileForm.get('edad')?.touched" class="p-error">
+                      Por favor, ingresa una edad.
+                    </div>
+      
+                  </div>
+                <!--  -->
+  
+            </form>
+
+            <div class="flex flex-row items-center justify-end ">
+              <button (click)="profileUpdate()" [disabled]="isButtonDisabled" class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                  Actualizar <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+              </button>
+            </div>
+
+        </div>
+    <!--  -->
+
+    <!-- Formulario restablecer contrasena -->
+
+        <div class="w-full h-1/2 flex flex-col justify-evenly" >
+
+          <h5 class="font-medium text-md text-left ">Acutaliza los datos del usuario</h5>
+
+          <form  [formGroup]="profileRestablecerPasswordForm" (ngSubmit)="updatePassword()" class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <!-- contrasena -->
+
+                  <div class="p-field mb-3">
+                          
+                    <div class="p-inputgroup">
+
+                      <span class="p-inputgroup-addon bg-white border ">
+                        <i class="pi pi-lock text-blue-500"></i>
+                      </span>
+
+                      <span class="p-float-label">
+                        <input id="contrasena" [type]=" visiblePassword ? 'text' : 'password' " pInputText formControlName="contrasena"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                        <label for="contrasena">Contraseña</label>
+                      </span>
+                      
+                      <span class="p-inputgroup-addon bg-white border" (click)="cambioVistaInput()" >
+                        <i class="pi text-blue-500" [class]=" visiblePassword ? 'pi-eye' : 'pi-eye-slash' " ></i>
+                      </span>
+
+                    </div>
+                  
+                    <div *ngIf="profileRestablecerPasswordForm.get('contrasena')?.invalid && profileRestablecerPasswordForm.get('contrasena')?.touched" class="p-error">
+                      Por favor, ingresa un contraseña.
+                    </div>
+
+                  </div>
+
+                <!--  -->
+
+                <!-- contrasena -->
+
+                  <div class="p-field mb-3">
+                            
+                      <div class="p-inputgroup">
+
+                        <span class="p-inputgroup-addon bg-white border ">
+                          <i class="pi pi-lock text-blue-500"></i>
+                        </span>
+
+                        <span class="p-float-label">
+                          <input id="nueva_contrasena" [type]=" visiblePassword ? 'text' : 'password' " pInputText formControlName="nuevo_contrasena"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                          <label for="nueva_contrasena"> Nueva contraseña</label>
+                        </span>
+
+                        <span class="p-inputgroup-addon bg-white border" (click)="cambioVistaInput()" >
+                          <i class="pi text-blue-500" [class]=" visiblePassword ? 'pi-eye' : 'pi-eye-slash' " ></i>
+                        </span>
+
+                      </div>
+                    
+                      <div *ngIf="profileRestablecerPasswordForm.get('nuevo_contrasena')?.invalid && profileRestablecerPasswordForm.get('nuevo_contrasena')?.touched" class="p-error">
+                        Por favor, ingresa un contraseña.
+                      </div>
+
+                  </div>
+
+                <!--  -->
+
+                <!-- contrasena -->
+
+                    <div class="p-field mb-3">
+                                
+                      <div class="p-inputgroup">
+
+                        <span class="p-inputgroup-addon bg-white border ">
+                          <i class="pi pi-lock text-blue-500"></i>
+                        </span>
+
+                        <span class="p-float-label">
+                          <input #confirmar_contrasena [type]=" visiblePassword ? 'text' : 'password' " pInputText  formControlName="confirmar_contrasena"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                          <label for="confirmar_contrasena">Confirmar contraseña</label>
+                        </span>
+
+                        <span class="p-inputgroup-addon bg-white border" (click)="cambioVistaInput()" >
+                          <i class="pi text-blue-500" [class]=" visiblePassword ? 'pi-eye' : 'pi-eye-slash' " ></i>
+                        </span>
+
+                      </div>
+                    
+                      <div *ngIf="profileRestablecerPasswordForm.get('confirmar_contrasena')?.invalid && profileRestablecerPasswordForm.get('confirmar_contrasena')?.touched" class="p-error">
+                        Por favor, ingresa un contraseña.
+                      </div>
+
+                    </div>
+
+                <!--  -->
+
+          </form>
+
+          <div class="flex flex-row items-center justify-end ">
+            <button (click)="updatePassword()"  [disabled]="isButtonDisabledPassword" class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                Actualizar <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+            </button>
+          </div>
+
+
+
+        </div>
+
+    <!--  -->
+
+    <!-- Footer boones  -->
+        <!-- <div class="flex flex-col items-center justify-center ">
+            <div class="grid gap-4 mt-4 w-full sm:flex sm:justify-between">
+            <button  class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                Descartar
+            </button>
+            <button (click)="profileUpdate()" class="text-md bg-blue-500 text-white font-bold py-2 px-4 w-full sm:w-1/4 focus:outline-none focus:shadow-outline">
+                Actualizar
+            </button>
+            </div>
+        </div> -->
+    <!--  -->
+
+</div>

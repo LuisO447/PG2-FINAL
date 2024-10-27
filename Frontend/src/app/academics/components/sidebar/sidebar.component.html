@@ -1,0 +1,138 @@
+
+<div class="relative flex h-full w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 ">
+
+  <!-- Encabezado -->
+
+    <div (click)="cambioComponente('dashboard')" class="">
+      <p-avatar icon="pi pi-user" styleClass="float-left mr-2" size="xlarge" [style]="{'background-color': datos.sexo == 'm' ? '#2196F3' : '#ec4899', 'color': '#ffffff', 'shape-outside': 'margin-box'}" shape="circle"></p-avatar>
+        <p> Academia </p>
+        <p> {{ datos.nombre_completo}} </p>
+        <p> {{ datos.correo }} </p>
+        <p> {{ datos.tipo_usuario }} </p>
+    </div>
+  
+  <!--  -->
+
+  <nav class="flex min-w-[240px] h-full flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
+
+    <div (click)="cambioComponente('profile')" role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+      <div class="grid mr-4 place-items-center">
+
+        <span class="bg-white ">
+          <i class="pi pi-user text-blue-500"></i>
+        </span>
+
+      </div>
+
+      Perfil
+
+    </div>
+
+    <!-- lista de acceso a modulos Profesores -->
+
+      <div *ngIf=" this.datos.tipo_usuario == 'profesor'; else LoggedStudent">
+
+        <div (click)="cambioComponente('profesor_admin_curso')" role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+          <div class="grid mr-4 place-items-center">
+            <span class="bg-white ">
+              <i class="pi pi-bookmark text-blue-500"></i>
+            </span>
+          </div>
+          Administrar los cursos
+        </div>
+
+        <div (click)="cambioComponente('profesor_listado_estudiantes')" role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+          <div class="grid mr-4 place-items-center">
+            <span class="bg-white ">
+              <i class="pi pi-bars text-blue-500"></i>
+            </span>
+          </div>
+          Lista de estudiantes
+        </div>
+
+        <div (click)="cambioComponente('profesor_notificaciones')" role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+
+          <div class="grid mr-4 place-items-center">
+
+            <span class="bg-white ">
+              <i class="pi pi-bell text-blue-500"></i>
+            </span>
+
+          </div>
+
+          <span [ngClass]=" { 'font-bold': NotificacioensTotales != '0' }  " >Notificaciones</span>
+
+          <div *ngIf="NotificacioensTotales != '0' " class="grid ml-auto place-items-center justify-self-end">
+
+            <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-full select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
+              <span class="">  {{ NotificacioensTotales }} </span>
+            </div>
+            
+          </div>
+
+        </div>
+
+        
+
+      </div>
+
+    <!--  -->
+
+    <!-- acceso a estudiantes -->
+      
+      <ng-template #LoggedStudent>
+        <div>
+
+          <div (click)="cambioComponente('estudiante_listado_de_cursos')" role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+            <div class="grid mr-4 place-items-center">
+              <span class="bg-white ">
+                <i class="pi pi-bars text-blue-500"></i>
+              </span>
+            </div>
+            Listado de cursos
+          </div>
+
+          <div (click)="cambioComponente('estudiante_notificaiones')" role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+
+            <div class="grid mr-4 place-items-center">
+
+              <span class="bg-white ">
+                <i class="pi pi-bell text-blue-500"></i>
+              </span>
+
+            </div>
+            
+            <span [ngClass]=" { 'font-bold': NotificacioensTotales != '0' }  " >Notificaciones</span>
+
+            <div *ngIf="NotificacioensTotales != '0' " class="grid ml-auto place-items-center justify-self-end">
+  
+              <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-full select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
+                <span class="">  {{ NotificacioensTotales }} </span>
+              </div>
+              
+            </div>
+
+          </div>
+
+        </div>
+
+      </ng-template>
+
+    <!--  -->
+
+
+
+  </nav>
+
+  <!-- Cerrar sesion -->
+    <div (click)="logOut()"role="button" class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+      <div class="grid mr-4 place-items-center">
+        <span class="bg-white ">
+          <i class="pi pi-power-off text-blue-500"></i>
+        </span>
+      </div>
+      Log Out
+    </div>
+  <!--  -->
+
+</div> 

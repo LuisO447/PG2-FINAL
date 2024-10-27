@@ -1,0 +1,40 @@
+/* app.component.css */
+.sidebar {
+  z-index: 10; /* Ensure sidebar is on top of content */
+  overflow-y: auto; /* Enable scrolling within sidebar */
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    transform: translateX(-100%); /* Hide sidebar initially */
+  }
+
+  .sidebar.sm:block {
+    transform: translateX(0); /* Show sidebar on small screens */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidebar.md:hidden {
+    transform: translateX(-100%); /* Hide sidebar on medium screens */
+  }
+}
+
+.content {
+  padding: 20px; /* Add some padding to content area */
+}
+
+@media (max-width: 768px) {
+  ::ng-deep div.p-overlaypanel{
+    left: 0 !important;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  ::ng-deep div.p-overlaypanel{
+    left: 50% !important;
+    width: 45% !important;
+    top: 10% !important
+  }
+}

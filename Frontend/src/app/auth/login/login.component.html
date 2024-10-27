@@ -1,0 +1,122 @@
+
+<!-- <p-toast></p-toast> -->
+
+<div class="h-full flex flex-col-reverse sm:flex-col-reverse md:flex-row ">
+
+  <div class="w-full sm:w-full md:w-1/2 bg-gradient-to-r bg-blue-700">
+      <div class="flex flex-col items-center justify-center h-full">
+        <h1 class="text-3xl text-white font-bold">Opciones</h1>
+        <p class="text-gray-300">¿Necesitas ayuda?</p>
+        <div class="grid gap-4 mt-4">
+            <a (click)="changeCard(2)" class="cursor-pointer text-md bg-white-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Registrarse</a>
+            <a (click)="changeCard(1)" class="cursor-pointer text-md bg-white-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Recuperar cuenta</a>
+        </div>
+      </div>
+  </div>
+
+  <!-- Mitad inferior con el formulario -->
+  <div class="flex-1 flex flex-col justify-center items-center p-6 bg-white">
+
+    <h2 class="text-2xl font-bold mb-4">Bienvenido {{tipoIngreso}} </h2>
+
+
+    <div [ngSwitch]="pasosIngreso" class="w-full h-1/2 flex flex-col justify-around items-center">
+
+          <!-- Primer paso para login -->
+              <span *ngSwitchCase="1" class="w-full" > 
+                
+                  <div class="flex flex-col items-center justify-center h-full w-full">
+                  <div class="grid gap-4 mt-4 w-full">
+                      <button (click)="ingresoPorTipo('profesor')" class="w-full text-md bg-white-500 text-white bg-blue-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Profesor</button>
+                      <button (click)="ingresoPorTipo('estudiante')" class="w-full text-md bg-white-500 text-white bg-blue-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Estudiante</button>
+                  </div>
+                  </div>
+              
+              </span>
+
+          <!-- Segundo paso para loing  -->
+              <span *ngSwitchCase="2">
+                
+                <form [formGroup]="loginForm" (ngSubmit)="login()" class="w-full h-96 flex flex-col justify-around items-center ">
+
+                  <!--  Correo electronico -->
+                    <div class="p-field mb-3">
+        
+                      <div class="p-inputgroup">
+
+                        <span class="p-inputgroup-addon bg-white border ">
+                          <i class="pi pi-envelope text-blue-500"></i>
+                        </span>
+
+                        <span class="p-float-label">
+                          <input #correo pInputText  placeholder=""  formControlName="correo"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                          <label for="correo">Correo electrónico</label>
+                        </span>
+
+                        <span class="p-inputgroup-addon bg-white ">
+                          <i class="pi pi-dddeye text-blue-500"></i>
+                        </span>
+
+                      </div>
+                    
+                      <div *ngIf="loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched" class="p-error">
+                        Por favor, ingresa un correo electrónico válido.
+                      </div>
+        
+                    </div>
+                  <!--  -->
+      
+                  <!-- contrasena -->
+                    <div class="p-field mb-3">
+        
+                      <div class="p-inputgroup">
+
+                        <span class="p-inputgroup-addon bg-white border ">
+                          <i class="pi pi-lock text-blue-500"></i>
+                        </span>
+
+                        <span class="p-float-label">
+                          <input #contrasena [type]=" visiblePassword ? 'text' : 'password' " pInputText formControlName="contrasena"  class="pl-[10px] border border-blue-500 focus:border-blue-600 focus:ring-0"  />
+                          <label for="contrasena">Contraseña</label>
+                        </span>
+
+                        <span class="p-inputgroup-addon bg-white border" (click)="cambioVistaInput()" >
+                          <i class="pi text-blue-500" [class]=" visiblePassword ? 'pi-eye' : 'pi-eye-slash' " ></i>
+                        </span>
+
+                      </div>
+                    
+                      <div *ngIf="loginForm.get('contrasena')?.invalid && loginForm.get('contrasena')?.touched" class="p-error">
+                        Por favor, ingrese una contraseña segura
+                      </div>
+                      
+                    </div>
+                  <!--  -->
+            
+                  <!-- Botón de Iniciar Sesión -->
+                    <div class="p-d-flex p-jc-between w-full">
+                      <button (click)="login()" [disabled]="isButtonDisabled" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Iniciar sesión <p-progressSpinner *ngIf="isButtonDisabled" ariaLabel="loading"  styleClass="custom-spinner"   />
+                      </button>
+                    </div>
+                  <!--  -->
+
+                  <!-- REGRESAR al paso 1 -->
+                    <div class="p-d-flex p-jc-between w-full">
+                      <button (click)="ingresoPorTipo('')" class="w-full cursor-pointer mt-5 text-md bg-white-500 text-white bg-blue-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">Regresar</button>
+                    </div>
+                  <!--  -->
+      
+                </form>
+
+
+              </span>
+          <!-- ------------------------------ -->
+
+            <span *ngSwitchDefault></span>
+
+    </div>  
+
+  </div>
+
+</div>

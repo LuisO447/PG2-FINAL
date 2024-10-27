@@ -1,0 +1,161 @@
+
+ <div class="card h-screen">
+
+    <!-- Menu lateral -->
+      <p-sidebar [(visible)]="sidebarVisible">
+          <ng-template pTemplate="headless">
+              <app-sidebar class=" w-full " (cambioDeComponente)="CambioComponentePadre($event)" ></app-sidebar>
+          </ng-template>
+      </p-sidebar>
+    <!--  -->
+
+    <!-- Menu superior -->
+    <nav class="h-[10vh]  bg-cover bg-center bg-white-500 flex flex-row items-center justify-between">
+
+      <div>
+        <button (click)="sidebarVisible = true" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset :ring-white" aria-expanded="false">
+              <svg class="block h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /> </svg>
+        </button>
+      </div>
+
+      <div>
+        <img src="assets/logo/logo.jpeg" alt="User Icon" class="w-28 h-12">
+      </div>
+
+      <div class="flex flex-row">
+
+        <div>
+
+              <!-- Vista notificaioies  -->
+
+                <p-overlayPanel class="estiloOverlayPanel" #vistaNotificacion  [dismissable]="true">
+
+                    <ng-template pTemplate="content">
+
+                      <h4 class="border-b-[1px] border-blue-500">notificaciones </h4>
+
+                      <!-- Ventan de carga -->
+                        <div *ngIf="cargandoNotificaciones == true; else mostrarNotificaciones" >
+                          <p-progressSpinner ariaLabel="cargando..." />
+                        </div>
+                        <!--  -->
+
+                      <!-- Cuerpo de la ventana -->
+                        <ng-template #mostrarNotificaciones >
+                          <p-virtualScroller  [value]="listadoNotificaciones"  class="surface-border border-round border-blue-500"  [style]="{'width': '100%'}" scrollHeight="200px"  [itemSize]="50">
+
+                            <ng-template pTemplate="notificacion" let-notificacion>
+
+                              <div class="flex items-center p-2 h-full" [ngClass]="{ 'surface-hover': notificacion.index % 2 === 0 }">
+                                
+                                  <!-- Icono al inicio -->
+                                  <i class="pi pi-info-circle text-2xl mr-4"></i>
+
+                                  <!-- Contenedor de texto -->
+                                  <div class="flex-1 min-w-0 cursor-pointer " (click)=" evaluarCurso( notificacion ) ">
+                                    <div class=" truncate whitespace-nowrap">
+                                      <span class="font-bold" >{{ notificacion.notificacion.tipoNotificacion }} </span> - {{ notificacion.emisor.nombre_completo }}
+                                    </div>
+                                    <div class="truncate whitespace-nowrap">
+                                      {{ notificacion.notificacion.contenido }}
+                                    </div>
+                                  </div>
+
+                                  <!-- Icono de punto azul al final -->
+                                   <div (click)="NotifacioensLeida( notificacion.notificacion.id )" >
+                                     <i [ngClass]=" { 'bg-blue-500 text-blue-500 rounded-full' : notificacion.notificacion.leido == false, 'text-white-200' : notificacion.notificacion.leido == true }"  class="pi pi-circle text-3l ml-4 "></i>
+                                  </div>
+                                  
+                              </div>
+                            </ng-template>
+
+                          </p-virtualScroller>
+                        </ng-template>
+                      <!--  -->
+
+                      <!-- ultimos botones -->
+                        <div class="w-full flex flex-row justify-between">
+
+                          <div>
+
+                            <!-- Manda a traer todas las notificaciones -->
+                            <button (click)="agregarTodasLasnotificaiones()" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset :ring-white" aria-expanded="false">
+                              <i class="pi pi-undo text-blue-500"></i>
+                            </button>
+
+                          </div>
+
+                          <div class="flex flex-row">
+
+                            <!-- Marca como leidas las notificaiones -->
+                            <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset :ring-white" aria-expanded="false">
+                              <span class=" bg-white ">
+                                <img src="assets/icons/checklist.svg" alt="User Icon" class="w-5 h-5">
+                              </span>
+                            </button>
+
+                            <!-- Limpia notificaciones -->
+                            <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset :ring-white" aria-expanded="false">
+                              <span class=" bg-white">
+                                <img src="assets/icons/sort.svg" alt="User Icon" class="w-5 h-5">
+                              </span>
+                            </button>
+
+                          </div>
+
+                        </div>
+                      <!--  -->
+
+                    </ng-template>
+
+                </p-overlayPanel>
+
+              <!-- Componente de notificaciones -->
+
+              <button (click)="vistaNotificacion.toggle($event); obtenerNotifacioens();" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset :ring-white" aria-expanded="false">
+
+                <span *ngIf="NotificacioensTotales != '0' ">
+                  <p-badge  [value]="NotificacioensTotales"  class="absolute top-0 right-0" />
+                </span>
+       
+                <svg class="block h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11c0-2.9-1.6-5.464-4.5-6.32V4a2.5 2.5 0 00-5 0v.68C5.6 5.536 4 8.1 4 11v3.158c0 .538-.214 1.055-.595 1.437L2 17h5m8 0a3 3 0 01-6 0" />
+                </svg>
+              </button>
+
+        </div>
+
+        <button (click)="CambioComponentePadre('dashboard')" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset :ring-white" aria-expanded="false">
+          <svg class="block h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12L12 3l9 9M7.5 12v7.5h3.5v-5h2v5h3.5V12" />
+          </svg>
+        </button>
+
+      </div>
+
+    </nav>
+    <!--  -->
+
+
+    <!-- conteido de la aplicacion  -->
+    <div [ngSwitch]="componenteActual" class="flex items-center justify-center h-[90vh]  bg-cover bg-center bg-no-repeat bg-gradient-to-br from-blue-300 to-blue-500">
+        <div class="bg-white shadow-md rounded-lg p-2 h-[95%] w-11/12 " >
+
+            <span *ngSwitchCase="'dashboard'">                    <app-dashboard></app-dashboard> </span>
+            <span *ngSwitchCase="'profile'">                      <app-profile (cambioDeComponente)="CambioComponentePadre($event)" > </app-profile>                                           </span>
+            <span *ngSwitchCase="'profesor_admin_curso'">         <app-profesor-admin-cursos></app-profesor-admin-cursos> </span>
+            <span *ngSwitchCase="'profesor_listado_estudiantes'"> <app-profesor-listado-estudiantes></app-profesor-listado-estudiantes> </span>
+            <span *ngSwitchCase="'profesor_notificaciones'">      <app-profesor-notificaciones (cambioDeComponente)="CambioComponentePadre($event)"></app-profesor-notificaciones> </span>
+            <span *ngSwitchCase="'estudiante_listado_de_cursos'"> <app-estudiante-listado-cursos (cambioDeComponente)="CambioComponentePadre($event)"></app-estudiante-listado-cursos>       </span>
+            <span *ngSwitchCase="'estudiante_notificaiones'">     <app-estudiante-notificacion></app-estudiante-notificacion> </span>
+            <span *ngSwitchCase="'recibir_curso'">     <app-curso [Curso]="datosComponenteCurso" ></app-curso> </span>
+            <span *ngSwitchCase="'evaluar_curso'">     <app-revisar-curso [CursoEvaluacion]="datosComponenteCurso" (cambioDeComponente)="CambioComponentePadre($event)" ></app-revisar-curso> </span>
+            
+
+            <span *ngSwitchDefault>No se accedio a ningún lado.</span>
+
+        </div>
+    </div>
+    <!--  -->
+
+</div>
